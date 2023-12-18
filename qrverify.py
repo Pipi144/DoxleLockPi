@@ -1,15 +1,19 @@
 import requests
 import sys
 import json
-address = "http://192.168.1.109:8000"
+address = "http://192.168.1.109:9000"
 def verify_data(data):
-    result = data.get("name")
-    if result:
-        api_url = f"{address}/qr/verify/{result}"
+    print("DATA TYPE:", type(data))
+    print("DATA:",data)
+    dump = json.dumps(data)
+    data_json = json.loads(dump)
+    print("DATA JSON:", data_json)
+    if data:
+        api_url = f"{address}/qr/verify/"
         try:
-            response = requests.get(api_url)
+            print("DATA TYPE:", type(data_json))
+            response = requests.post(api_url, json = data_json, headers=head)
             response.raise_for_status() #Raise exception for HTTP non 2--
-            
             
             api_result = response.json()
             print("API RESULT:", api_result)

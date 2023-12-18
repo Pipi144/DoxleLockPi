@@ -50,7 +50,7 @@ while True:
     if text:
         try:
             data = {"name": text}
-            result_verify = verify_data(data)
+            result_verify = verify_data(text)
             
             
             if result_verify:
